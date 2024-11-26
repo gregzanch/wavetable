@@ -1,21 +1,18 @@
 <script lang="ts">
   import logo from "/logo.svg";
   import Synth from "./lib/Synth.svelte";
+  import StartPrompt from "./lib/StartPrompt.svelte";
+  let started = $state(false);
+  function onStart(){
+    started = !started;
+  }
+
 </script>
 
 <main>
-  <img src={logo} alt="" class="logo" />
-  <Synth />
+  {#if !started}
+    <StartPrompt {onStart} />
+  {:else}
+    <Synth />
+  {/if}
 </main>
-
-<style>
-  .logo {
-    height: 8em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 1em rgba(0, 0, 0, 40%))
-  }
-</style>
