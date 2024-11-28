@@ -12,14 +12,13 @@ export class Synth {
   oscillator: OscillatorNode;
   /** gain after the oscillator */
   private gainNode: GainNode;
-  private lastGain: number = 0.25;
   /** unique id */
   id: string;
   constructor(context: AudioContext) {
     this.id = nanoid();
     this.context = context;
     this.fft = new FFT(this.bufferLength);
-    this.gainNode = new GainNode(this.context, { gain: this.lastGain });
+    this.gainNode = new GainNode(this.context, { gain: 1 });
     this.oscillator = new OscillatorNode(this.context, {
       type: "custom",
       frequency: 440,
@@ -34,16 +33,11 @@ export class Synth {
     this.oscillator.start();
   }
 
-  set gain(newGain: number) {
-    this.lastGain = this.gainNode.gain.value;
-    this.gainNode.gain.value = newGain;
-  }
-
   setMute(mute: boolean) {
     if (mute) {
-      this.gain = 0;
+      this.gainNode.gain.value = 0;
     } else {
-      this.gain = this.lastGain;
+      this.gainNode.gain.value = 1;
     }
   }
 

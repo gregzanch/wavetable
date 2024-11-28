@@ -1,43 +1,35 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+  import Logo from "./Logo.svelte";
+  import Button from "./Button.svelte";
+  import { onMount } from "svelte";
+
   type StartPromptProps = {
     onStart: () => void;
-  }
+    fadeOutDuration: number;
+  };
 
-  let { onStart }: StartPromptProps = $props();
-
+  let { onStart, fadeOutDuration = 250 }: StartPromptProps = $props();
+  let isReady = $state(false);
+  onMount(() => isReady=true);
 </script>
 
-<svg class="start-logo" width="512" height="512" viewBox="0 0 512 512">
-  <path fill="none" d="M64 256L231.125 144.583C241.758 137.495 256 145.117 256 157.896V354.104C256 366.883 270.242 374.505 280.875 367.417L448 256" stroke-width="32" stroke-linecap="round" />
-</svg>
-<button onclick={onStart}>Start</button>
+<div class="vertical-layout"  out:fade={{duration: fadeOutDuration}}>
+    <Logo animateIn={true} />
+    {#if isReady}
+      <div in:fade={{duration: 500, delay: 500}}>
+        <Button onclick={onStart}>Start</Button>
+      </div>
+    {/if}
+  </div>
 
 <style>
-  :root {
-    --start-logo-offset-value: 675;
-  }
-  svg {
-    width: 300px;
-    height: 8em;
-    padding: 1.5em;
-  }
-
-  svg > path {
-    stroke: #000000;
-  }
-  
-  svg.start-logo {
-    stroke-dasharray: var(--start-logo-offset-value);
-    stroke-dashoffset: 0;
-    animation: dash 1s cubic-bezier(0.55, 0.0, 0.07, 1);
-  }
-  
-  @keyframes dash {
-    from {
-      stroke-dashoffset: var(--start-logo-offset-value);
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
+  .vertical-layout {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
   }
 </style>
