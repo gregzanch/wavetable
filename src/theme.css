@@ -1,5 +1,6 @@
 :root {
-  --color-mono-lightest: #fbfaf9;
+
+--color-mono-lightest: #fbfaf9;
   --color-mono-lighter: #f2f0ed;
   --color-mono-light: #ccc5b9;
   --color-mono-dark: #56534e;
@@ -9,11 +10,21 @@
   --color-mono-blue: #98c1d8;
   --color-mono-green: #5fa300;
   --color-mono-red: #eb5e27;
+--color-mono-lightest-down: #ebe6e0;
+  --color-mono-lighter-down: #ddd8d0;
+  --color-mono-light-down: #b8ae9e;
+  --color-mono-dark-down: #353431;
+  --color-mono-darker-down: #0d0d0c;
+  --color-mono-darkest-down: #3d3d38;
+  --color-mono-yellow-down: #ffc50a;
+  --color-mono-blue-down: #7eb1ce;
+  --color-mono-green-down: #4d8500;
+  --color-mono-red-down: #d74b14;
 }
 
 body,
 body[theme="light"] {
-  --mono-lightest: var(--color-mono-lightest);
+--mono-lightest: var(--color-mono-lightest);
   --mono-lighter: var(--color-mono-lighter);
   --mono-light: var(--color-mono-light);
   --mono-dark: var(--color-mono-dark);
@@ -22,7 +33,7 @@ body[theme="light"] {
 }
 
 body[theme="dark"] {
-  --mono-lightest: var(--color-mono-darkest);
+--mono-lightest: var(--color-mono-darkest);
   --mono-lighter: var(--color-mono-darker);
   --mono-light: var(--color-mono-dark);
   --mono-dark: var(--color-mono-light);

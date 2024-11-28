@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import Logo from "./Logo.svelte";
+  import Button from "./Button.svelte";
 
   type LayoutProps = {
     children: Function
@@ -9,9 +10,10 @@
   let { children }: LayoutProps = $props();
 </script>
 
-<div class="layout" in:fade={{delay: 350}}>
+<div class="layout" in:fade={{delay: 250}}>
   <nav class="nav-bar">
-    <Logo animateIn={false} width={32} height={32} />
+    <Logo width={32} height={32} />
+    <Button>Share</Button>
   </nav>
   {@render children()}
 </div>
@@ -26,5 +28,6 @@
   .nav-bar {
     padding: .5em;
     display: flex;
+    justify-content: space-between;
   }
 </style>

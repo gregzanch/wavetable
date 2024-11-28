@@ -9,7 +9,7 @@
     height?: number;
   };
 
-  let { animateIn = false, width = 300, height = 300 }: LogoProps = $props();
+  let { width = 300, height = 300 }: LogoProps = $props();
   let ready = $state(false);
   onMount(() => ready = true);
 
@@ -22,7 +22,7 @@
       class="logo-path"
       d="M64 256L231.125 144.583C241.758 137.495 256 145.117 256 157.896V354.104C256 366.883 270.242 374.505 280.875 367.417L448 256"
       fill="none"
-      stroke-width="32"
+      stroke-width="24"
       stroke-linecap="round"
     />
   {/if}
