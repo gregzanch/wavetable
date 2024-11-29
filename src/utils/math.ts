@@ -84,3 +84,12 @@ export class ComplexPairArray {
     return magnitude;
   }
 }
+
+export const mapValueFromRange =
+  (a1: number, a2: number, b1: number, b2: number) =>
+  (value: number): number => {
+    const fromRange = a2 - a1;
+    if (fromRange === 0) return Infinity;
+    const toRange = b2 - b1;
+    return b1 + ((value - a1) * toRange) / fromRange;
+  };
