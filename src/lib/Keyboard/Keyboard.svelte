@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { isTextInput } from "../../utils/focusable";
   import Key from "./Key.svelte";
+
 
   type KeyboardProps = {
     keydown: (key: string) => void;
@@ -26,25 +28,36 @@
     }
   }
 
+  function contextMatcher(e: KeyboardEvent) {
+    if(!e.target) return false;
+    if((e.target as HTMLElement).classList.contains("key")) {
+      return true;
+    }
+    if(isTextInput(e.target)) {
+      return false;
+    }
+    return true;
+  }
+
 </script>
 
 <div class="keyboard">
   <div class="upper">
-    <Key label="W" kind="dark" keybinding="w" keydown={createKeydownFunction("w")} keyup={createKeyupFunction("w")} />
-    <Key label="E" kind="dark" keybinding="e" keydown={createKeydownFunction("e")} keyup={createKeyupFunction("e")} />
+    <Key label="W" kind="dark" keybinding="w" keydown={createKeydownFunction("w")} keyup={createKeyupFunction("w")} {contextMatcher} />
+    <Key label="E" kind="dark" keybinding="e" keydown={createKeydownFunction("e")} keyup={createKeyupFunction("e")} {contextMatcher} />
     <div class="empty-key"></div>
-    <Key label="T" kind="dark" keybinding="t" keydown={createKeydownFunction("t")} keyup={createKeyupFunction("t")} />
-    <Key label="Y" kind="dark" keybinding="y" keydown={createKeydownFunction("y")} keyup={createKeyupFunction("y")} />
-    <Key label="U" kind="dark" keybinding="u" keydown={createKeydownFunction("u")} keyup={createKeyupFunction("u")} />
+    <Key label="T" kind="dark" keybinding="t" keydown={createKeydownFunction("t")} keyup={createKeyupFunction("t")} {contextMatcher} />
+    <Key label="Y" kind="dark" keybinding="y" keydown={createKeydownFunction("y")} keyup={createKeyupFunction("y")} {contextMatcher} />
+    <Key label="U" kind="dark" keybinding="u" keydown={createKeydownFunction("u")} keyup={createKeyupFunction("u")} {contextMatcher} />
   </div>
   <div class="lower">
-    <Key label="A" kind="light" keybinding="a" keydown={createKeydownFunction("a")} keyup={createKeyupFunction("a")} />
-    <Key label="S" kind="light" keybinding="s" keydown={createKeydownFunction("s")} keyup={createKeyupFunction("s")} />
-    <Key label="D" kind="light" keybinding="d" keydown={createKeydownFunction("d")} keyup={createKeyupFunction("d")} />
-    <Key label="F" kind="light" keybinding="f" keydown={createKeydownFunction("f")} keyup={createKeyupFunction("f")} />
-    <Key label="G" kind="light" keybinding="g" keydown={createKeydownFunction("g")} keyup={createKeyupFunction("g")} />
-    <Key label="H" kind="light" keybinding="h" keydown={createKeydownFunction("h")} keyup={createKeyupFunction("h")} />
-    <Key label="J" kind="light" keybinding="j" keydown={createKeydownFunction("j")} keyup={createKeyupFunction("j")} />
+    <Key label="A" kind="light" keybinding="a" keydown={createKeydownFunction("a")} keyup={createKeyupFunction("a")} {contextMatcher} />
+    <Key label="S" kind="light" keybinding="s" keydown={createKeydownFunction("s")} keyup={createKeyupFunction("s")} {contextMatcher} />
+    <Key label="D" kind="light" keybinding="d" keydown={createKeydownFunction("d")} keyup={createKeyupFunction("d")} {contextMatcher} />
+    <Key label="F" kind="light" keybinding="f" keydown={createKeydownFunction("f")} keyup={createKeyupFunction("f")} {contextMatcher} />
+    <Key label="G" kind="light" keybinding="g" keydown={createKeydownFunction("g")} keyup={createKeyupFunction("g")} {contextMatcher} />
+    <Key label="H" kind="light" keybinding="h" keydown={createKeydownFunction("h")} keyup={createKeyupFunction("h")} {contextMatcher} />
+    <Key label="J" kind="light" keybinding="j" keydown={createKeydownFunction("j")} keyup={createKeyupFunction("j")} {contextMatcher} />
   </div>
 </div>
 
