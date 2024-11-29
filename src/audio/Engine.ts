@@ -38,10 +38,18 @@ const keyToNoteMap: Record<string, string> = {
 export class Engine {
   context: AudioContext;
   synthesizers: Map<string, Synth>;
+  outputSink: GainNode;
+  analyzer: AnalyserNode;
   constructor() {
     // default sample rate: 44100
     this.context = new AudioContext({ sampleRate: 44100 });
     this.synthesizers = new Map();
+    this.analyzer = new AnalyserNode(this.context, {
+      fftSize: Synth.bufferLength,
+    });
+    this.outputSink = new GainNode(this.context);
+    this.outputSink.connect(this.analyzer);
+    // this.analyzer.connect(this.context.destination);
   }
 
   createSynths() {
@@ -50,6 +58,7 @@ export class Engine {
       synth.oscillator.type = "sawtooth";
       synth.oscillator.frequency.value = octaveFrequencyMap[note] * 4;
       this.synthesizers.set(note, synth);
+      synth.gainNode.connect(this.outputSink);
     }
   }
 

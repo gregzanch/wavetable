@@ -5,19 +5,19 @@ import { FFT } from "../utils/fft";
 export class Synth {
   fft: FFT;
   /** Number of samples in the waveform buffer */
-  bufferLength: number = 1024;
+  static bufferLength: number = 2048;
   /** The engines audio context */
   context: AudioContext;
   /** the oscillator node that acts as the source */
   oscillator: OscillatorNode;
   /** gain after the oscillator */
-  private gainNode: GainNode;
+  gainNode: GainNode;
   /** unique id */
   id: string;
   constructor(context: AudioContext) {
     this.id = nanoid();
     this.context = context;
-    this.fft = new FFT(this.bufferLength);
+    this.fft = new FFT(Synth.bufferLength);
     this.gainNode = new GainNode(this.context, { gain: 1 });
     this.oscillator = new OscillatorNode(this.context, {
       type: "custom",
@@ -29,7 +29,6 @@ export class Synth {
     });
     this.setMute(true);
     this.oscillator.connect(this.gainNode);
-    this.gainNode.connect(this.context.destination);
     this.oscillator.start();
   }
 
