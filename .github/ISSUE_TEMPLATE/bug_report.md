@@ -1,8 +1,8 @@
 ---
 name: Bug report
 about: Something went wrong, let's fix it
-title: "[BUG]"
-labels: ''
+title: "[BUG]: "
+labels: bug
 assignees: ''
 
 ---
