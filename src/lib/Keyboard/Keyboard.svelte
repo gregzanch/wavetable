@@ -29,6 +29,7 @@
   }
 
   function contextMatcher(e: KeyboardEvent) {
+    if(e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return false;
     if(!e.target) return false;
     if((e.target as HTMLElement).classList.contains("key")) {
       return true;
