@@ -1,6 +1,4 @@
 <script lang="ts">
-  type ButtonColor = "dark" | "light" | "green" | "yellow" | "red" | "blue";
-
 
   type ButtonProps = {
     bg?: string;
@@ -25,8 +23,8 @@
   .btn {
     border: none;
     width: fit-content;
-    padding: 8px 12px;
-    font-size: 16px;
+    padding: var(--spacing-200) var(--spacing-300);
+    font-size: var(--font-size-default);
     border-radius: 0.5em;
   }
 </style>

@@ -49,7 +49,7 @@ export class Engine {
     });
     this.outputSink = new GainNode(this.context);
     this.outputSink.connect(this.analyzer);
-    this.analyzer.connect(this.context.destination);
+    // this.analyzer.connect(this.context.destination);
   }
 
   createSynths() {

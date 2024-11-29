@@ -2,6 +2,7 @@
   import { audioState } from "../state/AudioState.svelte";
   import Keyboard from "./Keyboard/Keyboard.svelte";
   import Scope from "./Scope.svelte";
+  import TextInput from "./TextInput.svelte";
 
   let paused = $state(true);
   Object.assign(window, { audioState });
@@ -12,6 +13,7 @@
 
 <div class="synth">
   <Scope id="main-scope" />
+  <TextInput value="sdf" />
   <Keyboard keydown={(key) => {
     console.log(key, "down")
     audioState.engine.getSynthForKey(key)?.setMute(false);
