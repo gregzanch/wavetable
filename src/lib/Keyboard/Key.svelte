@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { registerHotKey } from "../../utils/hotkeys";
+  import Keyboard from "./Keyboard.svelte";
 
 
   type KeyKind = "light" | "dark";
@@ -12,15 +13,17 @@
     keydown?: (event: KeyboardEvent) => void;
     keypress?: (event: KeyboardEvent) => void;
     keyup?: (event: KeyboardEvent) => void;
+    contextMatcher: (event: KeyboardEvent) => boolean;
   }
 
-  let { label = "A", kind = "light", keybinding = label.toLowerCase(), keydown, keypress, keyup }: KeyProps = $props();
+  let { label = "A", kind = "light", keybinding = label.toLowerCase(), keydown, keypress, keyup, contextMatcher = () => true }: KeyProps = $props();
 
   let pressed = $state(false);
 
   function keydownWrapper(e: KeyboardEvent) {
     if(keydown) keydown(e);
     pressed = true;
+    document.getElementById(e.key.toLowerCase())?.focus();
   }
 
   function keyupWrapper(e: KeyboardEvent) {
@@ -30,16 +33,16 @@
 
   onMount(() => {
     const unbindFunctions = [
-      keydown && registerHotKey(keybinding, "keydown", keydownWrapper),
-      keypress && registerHotKey(keybinding, "keypress", keypress),
-      keyup && registerHotKey(keybinding, "keyup", keyupWrapper),
+      keydown && registerHotKey(keybinding, "keydown", keydownWrapper, contextMatcher),
+      keypress && registerHotKey(keybinding, "keypress", keypress, contextMatcher),
+      keyup && registerHotKey(keybinding, "keyup", keyupWrapper, contextMatcher),
     ];
     return () => unbindFunctions.forEach(fn => fn && fn());
   })
 
 </script>
 
-<button class={["key", kind, pressed ? "down" : ""].join(" ")}>
+<button id={keybinding} class={["key", kind, pressed ? "down" : ""].join(" ")}>
   {label}
 </button>
 

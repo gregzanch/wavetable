@@ -20,6 +20,12 @@ const octaveFrequencyMap: Record<string, number> = {
   ["b"]: 61.73541,
 };
 
+octaveFrequencyMap["c2"] = octaveFrequencyMap["c"] * 2;
+octaveFrequencyMap["c#2"] = octaveFrequencyMap["c#"] * 2;
+octaveFrequencyMap["d2"] = octaveFrequencyMap["d"] * 2;
+octaveFrequencyMap["d#2"] = octaveFrequencyMap["d#"] * 2;
+octaveFrequencyMap["e2"] = octaveFrequencyMap["e"] * 2;
+
 const keyToNoteMap: Record<string, string> = {
   ["w"]: "c#",
   ["e"]: "d#",
@@ -33,6 +39,11 @@ const keyToNoteMap: Record<string, string> = {
   ["g"]: "g",
   ["h"]: "a",
   ["j"]: "b",
+  ["k"]: "c2",
+  ["l"]: "d2",
+  [";"]: "e2",
+  ["o"]: "c#2",
+  ["p"]: "d#2",
 };
 
 export class Engine {

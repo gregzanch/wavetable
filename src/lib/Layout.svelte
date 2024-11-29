@@ -13,7 +13,7 @@
 <div class="layout" in:fade={{delay: 250}}>
   <nav class="nav-bar">
     <Logo width={32} height={32} />
-    <Button>Share</Button>
+    <Button href="https://github.com/gregzanch/wavetable">Contribute</Button>
   </nav>
   {@render children()}
 </div>
