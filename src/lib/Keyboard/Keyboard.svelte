@@ -50,6 +50,9 @@
     <Key label="T" kind="dark" keybinding="t" keydown={createKeydownFunction("t")} keyup={createKeyupFunction("t")} {contextMatcher} />
     <Key label="Y" kind="dark" keybinding="y" keydown={createKeydownFunction("y")} keyup={createKeyupFunction("y")} {contextMatcher} />
     <Key label="U" kind="dark" keybinding="u" keydown={createKeydownFunction("u")} keyup={createKeyupFunction("u")} {contextMatcher} />
+    <div class="empty-key"></div>
+    <Key label="O" kind="dark" keybinding="o" keydown={createKeydownFunction("o")} keyup={createKeyupFunction("o")} {contextMatcher} />
+    <Key label="P" kind="dark" keybinding="p" keydown={createKeydownFunction("p")} keyup={createKeyupFunction("p")} {contextMatcher} />
   </div>
   <div class="lower">
     <Key label="A" kind="light" keybinding="a" keydown={createKeydownFunction("a")} keyup={createKeyupFunction("a")} {contextMatcher} />
@@ -59,6 +62,9 @@
     <Key label="G" kind="light" keybinding="g" keydown={createKeydownFunction("g")} keyup={createKeyupFunction("g")} {contextMatcher} />
     <Key label="H" kind="light" keybinding="h" keydown={createKeydownFunction("h")} keyup={createKeyupFunction("h")} {contextMatcher} />
     <Key label="J" kind="light" keybinding="j" keydown={createKeydownFunction("j")} keyup={createKeyupFunction("j")} {contextMatcher} />
+    <Key label="K" kind="light" keybinding="k" keydown={createKeydownFunction("k")} keyup={createKeyupFunction("k")} {contextMatcher} />
+    <Key label="L" kind="light" keybinding="l" keydown={createKeydownFunction("l")} keyup={createKeyupFunction("l")} {contextMatcher} />
+    <Key label=";" kind="light" keybinding=";" keydown={createKeydownFunction(";")} keyup={createKeyupFunction(";")} {contextMatcher} />
   </div>
 </div>
 
