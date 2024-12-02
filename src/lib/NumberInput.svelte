@@ -29,6 +29,7 @@
     const newValue = e.currentTarget.valueAsNumber;
     if (newValue >= max) value = max;
     if (newValue <= min) value = min;
+    value = newValue;
     onchange(value);
   };
 
@@ -75,9 +76,11 @@
     padding: var(--spacing-200) var(--spacing-300);
     border-radius: 0.5em;
     border: solid 1px var(--mono-light);
-    
   }
-
+  
+  label {
+    color: var(--mono-darkest);
+  }
 
   .labeled-input-pair {
     display: flex;
@@ -85,4 +88,5 @@
     align-items: center;
     gap: var(--spacing-300);
   }
+
 </style>

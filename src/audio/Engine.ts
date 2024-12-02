@@ -84,9 +84,38 @@ export class Engine {
       return;
     }
     for (const note of Object.keys(octaveFrequencyMap)) {
-      if (!this.synthesizers.has(note)) return;
+      if (!this.synthesizers.has(note)) continue;
       const synth = this.synthesizers.get(note)!;
       synth.oscillator.frequency.value = octaveFrequencyMap[note] * octave;
+    }
+  }
+
+  detune(direction: "up" | "down" | "normal") {
+    let cents = 0;
+    switch (direction) {
+      case "up":
+        cents = 100;
+        break;
+      case "down":
+        cents = -100;
+        break;
+      case "normal":
+      default:
+        cents = 0;
+        break;
+    }
+    for (const note of Object.keys(octaveFrequencyMap)) {
+      if (!this.synthesizers.has(note)) continue;
+      const synth = this.synthesizers.get(note)!;
+      synth.oscillator.detune.cancelScheduledValues(this.context.currentTime);
+      synth.oscillator.detune.setValueAtTime(
+        synth.oscillator.detune.value,
+        this.context.currentTime
+      );
+      synth.oscillator.detune.linearRampToValueAtTime(
+        cents,
+        this.context.currentTime + 0.125
+      );
     }
   }
 

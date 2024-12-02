@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import type { HTMLAttributes } from "svelte/elements";
 
   type ButtonColor = "dark" | "light" | "green" | "yellow" | "red" | "blue";
 
@@ -10,7 +11,7 @@
     children?: any;
     href?: string;
     ariaLabel?: string;
-  };
+  } & HTMLAttributes<HTMLButtonElement>;
 
   let {
     bg = "var(--mono-darker)",
@@ -19,6 +20,7 @@
     onclick = () => {},
     href,
     ariaLabel,
+    ...props
   }: ButtonProps = $props();
 
   let role = href ? "link" : "";
@@ -26,12 +28,12 @@
 
 {#if href}
   <a {href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel}>
-    <button class="btn" style:background-color={bg} style:color={fg} {onclick} style:cursor="pointer">
+    <button class="btn" style:background-color={bg} style:color={fg} {onclick} style:cursor="pointer" {...props}>
       {@render children()}
     </button>
   </a>
 {:else}
-  <button class="btn" style:background-color={bg} style:color={fg} {onclick}>
+  <button class="btn" style:background-color={bg} style:color={fg} {onclick} {...props}>
     {@render children()}
   </button>
 {/if}
@@ -44,4 +46,5 @@
     font-size: var(--font-size-default);
     border-radius: 0.5em;
   }
+
 </style>
