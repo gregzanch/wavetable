@@ -29,6 +29,7 @@
     const newValue = e.currentTarget.valueAsNumber;
     if (newValue >= max) value = max;
     if (newValue <= min) value = min;
+    value = newValue;
     onchange(value);
   };
 
@@ -76,6 +77,9 @@
     border-radius: 0.5em;
     border: solid 1px var(--mono-light);
     
+  }
+  label {
+    color: var(--mono-darkest);
   }
 
 
