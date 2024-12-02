@@ -40,8 +40,8 @@
   .btn {
     border: none;
     width: fit-content;
-    padding: 8px 12px;
-    font-size: 16px;
+    padding: var(--spacing-200) var(--spacing-300);
+    font-size: var(--font-size-default);
     border-radius: 0.5em;
   }
 </style>

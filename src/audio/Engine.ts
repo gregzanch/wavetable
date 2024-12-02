@@ -73,6 +73,23 @@ export class Engine {
     }
   }
 
+  /**
+   * Changes the keyboard octave
+   * @param octave number between 1 and 7
+   * @returns {void}
+   */
+  setOctave(octave: number) {
+    if (!Number.isSafeInteger(octave)) {
+      console.warn(`cannot set the keyboards octave to ${octave}`);
+      return;
+    }
+    for (const note of Object.keys(octaveFrequencyMap)) {
+      if (!this.synthesizers.has(note)) return;
+      const synth = this.synthesizers.get(note)!;
+      synth.oscillator.frequency.value = octaveFrequencyMap[note] * octave;
+    }
+  }
+
   getSynthForKey(key: string): Synth | null {
     if (keyToNoteMap[key]) {
       return this.synthesizers.get(keyToNoteMap[key]) || null;
