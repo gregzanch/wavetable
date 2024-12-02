@@ -60,7 +60,7 @@ export class Engine {
     });
     this.outputSink = new GainNode(this.context);
     this.outputSink.connect(this.analyzer);
-    // this.analyzer.connect(this.context.destination);
+    this.analyzer.connect(this.context.destination);
   }
 
   createSynths() {
@@ -70,6 +70,23 @@ export class Engine {
       synth.oscillator.frequency.value = octaveFrequencyMap[note] * 4;
       this.synthesizers.set(note, synth);
       synth.gainNode.connect(this.outputSink);
+    }
+  }
+
+  /**
+   * Changes the keyboard octave
+   * @param octave number between 1 and 7
+   * @returns {void}
+   */
+  setOctave(octave: number) {
+    if (!Number.isSafeInteger(octave)) {
+      console.warn(`cannot set the keyboards octave to ${octave}`);
+      return;
+    }
+    for (const note of Object.keys(octaveFrequencyMap)) {
+      if (!this.synthesizers.has(note)) return;
+      const synth = this.synthesizers.get(note)!;
+      synth.oscillator.frequency.value = octaveFrequencyMap[note] * octave;
     }
   }
 

@@ -10,8 +10,8 @@
 
   let {
     value,
-    bg = "var(--mono-darker)",
-    fg = "var(--mono-lighter)",
+    bg = "var(--mono-lighter)",
+    fg = "var(--mono-darker)",
     onchange = (e) => {
       value = e.currentTarget.value;
     },
