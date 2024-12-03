@@ -7,6 +7,7 @@
   type ButtonProps = {
     bg?: string;
     fg?: string;
+    border?: string;
     onclick?: (e: MouseEvent) => void;
     children?: any;
     href?: string;
@@ -16,6 +17,7 @@
   let {
     bg = "var(--mono-darker)",
     fg = "var(--mono-lighter)",
+    border = "var(--mono-dark)",
     children = "button",
     onclick = () => {},
     href,
@@ -28,19 +30,20 @@
 
 {#if href}
   <a {href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel}>
-    <button class="btn" style:background-color={bg} style:color={fg} {onclick} style:cursor="pointer" {...props}>
+    <button class="btn" style:border-color={border} style:background-color={bg} style:color={fg} {onclick} style:cursor="pointer" {...props}>
       {@render children()}
     </button>
   </a>
 {:else}
-  <button class="btn" style:background-color={bg} style:color={fg} {onclick} {...props}>
+  <button class="btn" style:border-color={border} style:background-color={bg} style:color={fg} {onclick} {...props}>
     {@render children()}
   </button>
 {/if}
 
 <style>
   .btn {
-    border: none;
+    border-width: 1px;
+    border-style: solid;
     width: fit-content;
     padding: var(--spacing-200) var(--spacing-300);
     font-size: var(--font-size-default);
