@@ -1,5 +1,6 @@
 <script lang="ts">
   import { audioState } from "../state/AudioState.svelte";
+  import DetuneControl from "./DetuneControl.svelte";
   import Keyboard from "./Keyboard/Keyboard.svelte";
   import NumberInput from "./NumberInput.svelte";
   import Scope from "./Scope.svelte";
@@ -22,7 +23,10 @@
 
 <div class="synth">
   <Scope id="main-scope" />
-  <NumberInput onchange={onOctaveChanged} value={keyboardOctave} min={1} max={7} step={1} label="Octave" />
+  <div class="keyboard-controls">
+    <DetuneControl />
+    <NumberInput onchange={onOctaveChanged} value={keyboardOctave} min={1} max={7} step={1} label="Octave" />
+  </div>
   <Keyboard {keydown} {keyup} />
 </div>
 
@@ -35,5 +39,13 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 48px;
+  }
+  .keyboard-controls {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-4000);
   }
 </style>
