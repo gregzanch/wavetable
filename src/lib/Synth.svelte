@@ -10,6 +10,7 @@
 
   let keyboardOctave = $state(4);
   const onOctaveChanged = (value: number) => {
+    console.log(value);
     keyboardOctave = value;
     audioState.engine.setOctave(value);
   }

@@ -77,7 +77,7 @@
     border-radius: 0.5em;
     border: solid 1px var(--mono-light);
   }
-  
+
   label {
     color: var(--mono-darkest);
   }
